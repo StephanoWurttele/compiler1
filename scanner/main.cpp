@@ -5,8 +5,7 @@ int main(int argc, char *argv[]){
         std::cout<<"Please enter code line only";
         return 0;
     };
-    std::cout << argv[1] << std::endl;
-    Automata scanner("input.txt");
+    //Automata scanner("input.txt");
     std::string code = argv[1];
     std::vector<Token> TokenVec;
     std::vector<std::string> FinalTokenVec;
@@ -54,7 +53,6 @@ int main(int argc, char *argv[]){
     if (temp!=S){
         FinalTokenVec.push_back(std::to_string(temp)+"_" + temp2 + ",");
     }
-    std::cout << "Finished"<< std::endl;
     for (int i = 0; i < FinalTokenVec.size(); ++i){
         std::cout << FinalTokenVec[i];
     }
