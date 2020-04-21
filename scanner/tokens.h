@@ -1,7 +1,7 @@
 #ifndef TOKENS_H
 #define TOKENS_H
 
-enum tokens{L, D, OS, OR, OM, OD, OA, S, F, Count};
+enum tokens{L, D, OS, OR, OM, OD, OA, ODot, S, F, Other, Count};
 class Token{
     private:
     tokens name;

@@ -24,10 +24,16 @@ Token::Token(int _name, char character){
         case 6: 
             name = OA;
             break;
-        case 7: 
+        case 7:
+            name = ODot;
+            break;
+        case 8: 
             name = S;
             break;
-        default:  
+        case 9: 
             name = F;
+            break;
+        default:  
+            name = Other;
     }
 };

@@ -1,4 +1,3 @@
-#include <fstream>
 #include "automata.h"
 
 Automata::Automata(std::string filename){

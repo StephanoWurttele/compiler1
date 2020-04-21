@@ -2,6 +2,7 @@
 #define AUTOMATA_H
 #include "transitions.h"
 #include <vector>
+#include <fstream>
 class Automata{
     private:
     std::vector<State*> states;

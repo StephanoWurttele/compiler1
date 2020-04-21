@@ -37,8 +37,14 @@ Token Scanner::scan(char input){
         case ' ': 
             token = S;
             break;
-        default:  
+        case '.': 
+            token = ODot;
+            break;
+        case ';': 
             token = F;
+            break;
+        default:  
+            token = Other;
     }
     }
     return Token(token, input);

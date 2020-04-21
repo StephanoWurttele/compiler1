@@ -6,16 +6,16 @@ int main(int argc, char *argv[]){
         return 0;
     };
     //Automata scanner("input.txt");
-    std::string code = argv[1];
+    std::ifstream code_file(argv[1]);
+    std::string code;
     std::vector<Token> TokenVec;
     std::vector<std::string> FinalTokenVec;
     //scanner.show();
     Scanner miniscanner;
-    for (char c : code)  
-        TokenVec.push_back(miniscanner.scan(c));
-
-
-
+    while(getline(code_file,code)){
+        for (char c : code)  
+            TokenVec.push_back(miniscanner.scan(c));
+    }
     tokens temp = TokenVec[0].type();
     std::string temp2 = "";
     if (temp != S)
@@ -32,8 +32,21 @@ int main(int argc, char *argv[]){
             temp2.push_back(TokenVec[i].cont());
         }
         else if(TokenVec[i].type() == D){
+            if (temp == L){
+                temp2.push_back(TokenVec[i].cont());
+                continue;
+            }
             temp = D;
             temp2.push_back(TokenVec[i].cont());
+        }
+        else if(TokenVec[i].type() == ODot){
+            if (temp == D){
+                temp2.push_back(TokenVec[i].cont());
+                continue;
+            }
+            std::string error_message = "Unexpected \".\" (Column " + std::to_string(i) + ")";
+            throw std::invalid_argument(error_message);
+            
         }
         else{
             if(temp == D || temp == L){
@@ -50,7 +63,7 @@ int main(int argc, char *argv[]){
             
         }
     }
-    if (temp!=S){
+    if (temp!=S && temp !=F){
         FinalTokenVec.push_back(std::to_string(temp)+"_" + temp2 + ",");
     }
     for (int i = 0; i < FinalTokenVec.size(); ++i){
